@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $stmt->execute();
 
         if ($stmt->rowCount() > 0) {
-            echo "<script>alert('Esta clave ya está registrada'); window.location.href = '/cacao_app/login.php';</script>";
+            echo "<script>alert('Esta clave ya está registrada'); window.location.href = '/ChocoStock/login.php';</script>";
             exit();
         }
 
@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $stmt->bindParam(':name_user', $name_user);
         $stmt->execute();
 
-        header("Location: /cacao_app/login.php");
+        header("Location: /ChocoStock/login.php");
     } catch (PDOException $e) {
         echo "Error en el registro: " . $e->getMessage();
         exit();

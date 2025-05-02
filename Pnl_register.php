@@ -10,7 +10,7 @@
 <body>
     <div class="login-container">
         <h2>Registrar nueva usuario </h2>
-        <form action="server/user/registro.php" method="POST" autocomplete="off">
+        <form action="server/user/register.php" method="POST" autocomplete="off">
             <br>
             <label>
                 <span>Nombre del usuario</span>
@@ -23,7 +23,7 @@
             <button type="submit">Registrar</button>
             <br><br>
             <label>
-                <a href="login.php" class="btn-reg">Volver al login</a>
+                <a href="Pnl_login.php" class="btn-reg">Volver al login</a>
             </label>
         </form>
     </div>

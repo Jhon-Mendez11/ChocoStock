@@ -1,6 +1,6 @@
 <?php
 session_start();
-require '../commons/db.php'; 
+require '../commons/db.php';
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $clave = $_POST['clave'];
@@ -12,10 +12,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         if ($stmt->rowCount() > 0) {
             $_SESSION['autenticado'] = true;
-            header("Location: /cacao_app/index.html");
+            header("Location: /ChocoStock/index.html");
             exit();
         } else {
-            header('Location: /cacao_app/login.php?error=1');
+            header('Location: /ChocoStock/Pnl_login.php?error=1');
         }
 
     } catch (PDOException $e) {
