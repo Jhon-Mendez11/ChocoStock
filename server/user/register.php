@@ -4,11 +4,10 @@ require '../commons/db.php';
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $clave = $_POST['clave'];
-    $name_user = $_POST['name_user'];
 
     try {
         // Verificar si ya existe esa clave
-        $stmt = $db->prepare("SELECT * FROM usuario WHERE clave = :clave");
+        $stmt = $db->prepare("SELECT * FROM usuarios WHERE clave = :clave");
         $stmt->bindParam(':clave', $clave);
         $stmt->execute();
 
@@ -18,12 +17,20 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
 
         // Insertar nueva clave
-        $stmt = $db->prepare("INSERT INTO usuario (clave, name_user) VALUES (:clave, :name_user)");
-        $stmt->bindParam(':clave', $clave);
-        $stmt->bindParam(':name_user', $name_user);
-        $stmt->execute();
+        try{
+            $q ="INSERT INTO usuarios (clave, name_u, correo) VALUES (:clave, :name_u, :correo)";
+            $stmt = $db->prepare($q);
+            $stmt->execute([
+                "clave" => $_POST["clave"],
+                "name_u" => $_POST["name_u"],
+                "correo" => $_POST["correo"],
+            ]);
+        } catch (PDOException $e) {
+            echo 'Error en la conexión ' . $e->getMessage();
+            exit();
+        }
 
-        header("Location: /ChocoStock/login.php");
+        header("Location: /ChocoStock/Pnl_login.php");
     } catch (PDOException $e) {
         echo "Error en el registro: " . $e->getMessage();
         exit();

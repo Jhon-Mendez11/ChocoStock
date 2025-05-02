@@ -14,7 +14,11 @@
             <br>
             <label>
                 <span>Nombre del usuario</span>
-                <input type="text" id="name_user" name="name_user" placeholder="Nombre">
+                <input type="text" id="name_u" name="name_u" placeholder="Nombre">
+            </label>
+            <label>
+                <span>Correo</span>
+                <input type="email" id="correo" name="correo" placeholder="correo" required />
             </label>
             <label>
                 <span>Registre su clave</span>

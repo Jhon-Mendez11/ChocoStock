@@ -17,7 +17,7 @@
       <button type="submit">Ingresar</button>
       <br><br>
       <label>
-        <a href="pnl-registro.php" class="btn-reg">registrar clave</a>
+        <a href="Pnl_register.php" class="btn-reg">registrar clave</a>
       </label>
     </form>
     <?php if (isset($_GET['error'])): ?>
