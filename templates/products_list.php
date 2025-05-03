@@ -10,6 +10,7 @@
 <body>
     <div class="contenedor">
         <h1>Inventario Doña Juana</h1>
+        <a href="add_product.php" class="btn-agregar">➕ Agregar producto</a>
         <table class="tabla-productos">
             <thead>
                 <tr>
