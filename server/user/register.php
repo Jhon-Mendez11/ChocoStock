@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $stmt->execute();
 
         if ($stmt->rowCount() > 0) {
-            echo "<script>alert('Esta clave ya está registrada'); window.location.href = '/ChocoStock/login.php';</script>";
+            echo "<script>alert('Esta clave ya está registrada'); window.location.href = '/ChocoStock/Pnl_login.php';</script>";
             exit();
         }
 
