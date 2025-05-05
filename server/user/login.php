@@ -1,26 +1,27 @@
 <?php
 session_start();
+session_unset(); 
+session_destroy();
+session_start();
 require '../commons/db.php';
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $clave = $_POST['clave'];
 
-    try {
-        $stmt = $db->prepare("SELECT * FROM usuarios WHERE clave = :clave LIMIT 1");
-        $stmt->bindParam(':clave', $clave);
-        $stmt->execute();
+    $stmt = $db->prepare("SELECT * FROM usuarios WHERE clave = :clave LIMIT 1;");
+    $stmt->execute([
+        'clave' => $clave
+    ]);
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if ($stmt->rowCount() > 0) {
-            $_SESSION['autenticado'] = true;
-            header("Location: /ChocoStock/index.html");
-            exit();
-        } else {
-            header('Location: /ChocoStock/Pnl_login.php?error=1');
-        }
-
-    } catch (PDOException $e) {
-        echo "Error en la consulta: " . $e->getMessage();
-        exit();
+    if (isset($user)) {
+        $_SESSION['u_id'] = $user['u_id'];
+        $_SESSION['name_u'] = $user['name_u'];
+        header('Location: /ChocoStock/index.php');
+        exit;
+    } else {
+        header('Location: Pnl_login.php?error=1');
+        exit;
     }
 }
 ?>

@@ -24,7 +24,7 @@
                 <span>Registre su clave</span>
                 <input type="password" id="clave" name="clave" placeholder="clave" required />
             </label>
-            <button type="submit">Registrar</button>
+            <button type="submit" class="btn">Registrar</button>
             <br><br>
             <label>
                 <a href="Pnl_login.php" class="btn-reg">Volver al login</a>
