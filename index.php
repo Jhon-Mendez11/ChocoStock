@@ -18,6 +18,9 @@
         <li><a href="index.php">Inicio</a></li>
         <li><a href="pages/products.php">Agregar producto</a></li>
         <li><a href="#">Reportes</a></li>
+        <form action="server/user/logout.php" method="get">
+          <button type="submit" class="delete-btn left-align">Cerrar sesión</button>
+        </form>
       </ul>
     </nav>
     <div>
@@ -54,7 +57,7 @@
       </table>
       <br>
     </div>
-  
+
   </main>
 
 </body>

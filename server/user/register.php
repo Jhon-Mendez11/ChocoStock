@@ -1,7 +1,6 @@
 <?php
 require '../commons/db.php';
 
-
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $clave = $_POST['clave'];
 
@@ -17,8 +16,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
 
         // Insertar nueva clave
-        try{
-            $q ="INSERT INTO usuarios (clave, name_u, correo) VALUES (:clave, :name_u, :correo)";
+        try {
+            $q = "INSERT INTO usuarios (clave, name_u, correo) VALUES (:clave, :name_u, :correo)";
             $stmt = $db->prepare($q);
             $stmt->execute([
                 "clave" => $_POST["clave"],
