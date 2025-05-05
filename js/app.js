@@ -3,8 +3,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let products = [];
 
-    ListPro.innerHTML = '';
     function renderProducts() {
+        ListPro.innerHTML = '';
         fetch('server/user/session_info.php')
             .then(resp => resp.json())
             .then(data => {
@@ -13,12 +13,18 @@ document.addEventListener('DOMContentLoaded', () => {
                     fetch('server/products/products_list.php?u_id=' + data.u_id)
                         .then(res => res.json())
                         .then(products => {
-                            products.forEach(pro => {
-                                const li = document.createElement('li');
-                                li.innerHTML =
-                                    '<span>' + pro.nombre + '   -   </span>' +
-                                    '<span>' + pro.cantidad + '</span>';
-                                ListPro.appendChild(li);
+                            console.log(products)
+                            products.forEach(
+                                pro => {
+                                console.log(pro)
+
+                                const row = document.createElement('tr');
+                                row.innerHTML =
+                                    '<td>' + pro.nombre + '</td>' +
+                                    '<td>' + pro.cantidad + '</td>' +
+                                    '<td>' + pro.precio + '</td>' +
+                                    '<td>' + pro.fecha + '</td>';
+                                ListPro.appendChild(row);
                             })
                         })
                         .catch(err => {

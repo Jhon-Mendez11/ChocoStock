@@ -1,4 +1,3 @@
-
 <html lang="es">
 
 <head>
@@ -8,21 +7,23 @@
 </head>
 
 <body>
-<form action="server/user/login.php" method="POST">
-  <div class="login-container">
-    <h1>Choco Stock</h1>
-    <p>Ingresa tu clave para acceder</p>
-      <input type="password" name="clave" placeholder="Clave" required />
-      <button type="submit">Ingresar</button>
-      <br><br>
-      <label>
-        <a href="Pnl_register.php" class="btn-reg">registrar clave</a>
-      </label>
-    <?php if (isset($_GET['error'])): ?>
-      <p class="error">Credenciales incorrectas</p>
-    <?php endif; ?>
+  <div class="contenedor">
+    <form action="server/user/login.php" method="POST">
+      <div class="login-container">
+        <h1>Choco Stock</h1>
+        <p>Ingresa tu clave para acceder</p>
+        <input type="password" name="clave" placeholder="Clave" required />
+        <button type="submit">Ingresar</button>
+        <br><br>
+        <label>
+          <a href="Pnl_register.php" class="btn-reg">registrar clave</a>
+        </label>
+        <?php if (isset($_GET['error'])): ?>
+          <p class="error">Credenciales incorrectas</p>
+        <?php endif; ?>
+      </div>
+    </form>
   </div>
-  </form>
 </body>
 
 </html>
