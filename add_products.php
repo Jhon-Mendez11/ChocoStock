@@ -1,11 +1,17 @@
 <?php
-require 'server/commons/db.php';
+//require 'server/commons/db.php';
+require $_SERVER['DOCUMENT_ROOT'] . '/ChocoStock/server/commons/db.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nombre = $_POST['nombre'] ?? '';
-    $cantidad = $_POST['cantidad'] ?? 0;
-    $precio = $_POST['precio'] ?? 0;
-    $cantidad_min = $_POST['cantidad_min'] ?? 0;
+    $cantidad = isset($_POST['cantidad']) ? (int) $_POST['cantidad'] : 0;
+    $precio = isset($_POST['precio']) ? (int) $_POST['precio'] : 0;
+    $cantidad_min = isset($_POST['cantidad_min']) ? (int) $_POST['cantidad_min'] : 0;
+
+    // Validación simple
+    if ($precio < 0 || $cantidad < 0 || $cantidad_min < 0) {
+        die("❌ Error: Los valores no pueden ser negativos.");
+    }
 
     $query = "INSERT INTO productos (nombre, cantidad, precio, cantidad_min, fecha)
               VALUES (:nombre, :cantidad, :precio, :cantidad_min, NOW())";
@@ -22,6 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     exit;
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="es">
@@ -43,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <input type="number" name="cantidad" min="0" required>
 
             <label>Precio (S/):</label>
-            <input type="number" step="0.01" name="precio" min="0" required>
+            <input type="number" step="00.01" name="precio" min="0" required>
 
             <label>Cantidad mínima:</label>
             <input type="number" name="cantidad_min" min="0" required>

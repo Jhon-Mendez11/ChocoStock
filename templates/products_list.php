@@ -18,17 +18,27 @@
                     <th>Cantidad</th>
                     <th>Precio (S/)</th>
                     <th>Fecha</th>
+                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($productos as $p): ?>
-                    <tr class="<?= ($p['cantidad'] < $p['cantidad_min']) ? 'alerta' : '' ?>">
-                        <td><?= htmlspecialchars($p['nombre']) ?></td>
-                        <td><?= $p['cantidad'] ?></td>
-                        <td><?= $p['precio'] ?></td>
-                        <td><?= date("d/m/Y H:i", strtotime($p['fecha'])) ?></td>
+                <?php if (!empty($productos)): ?>
+                    <?php foreach ($productos as $p): ?>
+                        <tr class="<?= ($p['cantidad'] < $p['cantidad_min']) ? 'alerta' : '' ?>">
+                            <td><?= htmlspecialchars($p['nombre']) ?></td>
+                            <td><?= $p['cantidad'] ?></td>
+                            <td><?= $p['precio'] ?></td>
+                            <td><?= date("d/m/Y H:i", strtotime($p['fecha'])) ?></td>
+                            <td>
+                                <a href="edit_product.php?id=<?= $p['p_id'] ?>">Editar</a>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <tr>
+                        <td colspan="5">No hay productos registrados.</td>
                     </tr>
-                <?php endforeach; ?>
+                <?php endif; ?>
             </tbody>
         </table>
     </div>
