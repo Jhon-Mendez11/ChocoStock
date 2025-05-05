@@ -16,16 +16,17 @@ document.addEventListener('DOMContentLoaded', () => {
                             console.log(products)
                             products.forEach(
                                 pro => {
-                                console.log(pro)
+                                    console.log(pro)
 
-                                const row = document.createElement('tr');
-                                row.innerHTML =
-                                    '<td>' + pro.nombre + '</td>' +
-                                    '<td>' + pro.cantidad + '</td>' +
-                                    '<td>' + pro.precio + '</td>' +
-                                    '<td>' + pro.fecha + '</td>';
-                                ListPro.appendChild(row);
-                            })
+                                    const row = document.createElement('tr');
+                                    row.innerHTML =
+                                        '<td>' + pro.nombre + '</td>' +
+                                        '<td>' + pro.cantidad + '</td>' +
+                                        '<td>' + pro.precio + '</td>' +
+                                        '<td>' + pro.fecha + '</td>' +
+                                        '<td>' + pro.editar + '</td>';
+                                    ListPro.appendChild(row);
+                                })
                         })
                         .catch(err => {
                             console.error('Error al cargar productos:', err);

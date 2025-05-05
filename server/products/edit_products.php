@@ -1,5 +1,5 @@
 <?php
-require '../commons/db.php';
+require_once __DIR__ . '/../commons/db.php';
 
 if (!isset($_GET['id'])) {
     die("ID de producto no proporcionado.");
@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ':id' => $id
     ]);
 
-    header("Location: ../products.php");
+    header("Location: /ChocoStock/index.php");
     exit();
 }
 

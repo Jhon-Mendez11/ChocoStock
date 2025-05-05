@@ -1,4 +1,5 @@
 <?php session_start(); ?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -33,6 +34,7 @@
             <th>Cantidad</th>
             <th>precio</th>
             <th>fecha</th>
+            <th>Acciones</th>
           </tr>
         </thead>
         <tbody id="list-products">
@@ -44,7 +46,7 @@
                 <td><?= $p['precio'] ?></td>
                 <td><?= date("d/m/Y H:i", strtotime($p['fecha'])) ?></td>
                 <td>
-                  <a href="edit_product.php?id=<?= $p['p_id'] ?>">Editar</a>
+                  <?= $p['editar'] = '<a href= /ChocoStock/pages/edit_p.php?id=' . $p['p_id'] . ' class="btn-editar">Editar</a>' ?>;
                 </td>
               </tr>
             <?php endforeach; ?>
