@@ -12,11 +12,10 @@
 </head>
 
 <body>
-
   <main>
     <nav class="menu">
       <ul>
-        <li><a href="index.php">Inicio</a></li>
+        <li><a href="pages/sales.php">Registrar venta</a></li>
         <li><a href="pages/products.php">Agregar producto</a></li>
         <li><a href="#">Reportes</a></li>
         <form action="server/user/logout.php" method="get">
