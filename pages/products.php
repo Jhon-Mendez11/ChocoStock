@@ -33,7 +33,6 @@
                 <a href="../index.php" class="cancel-btn">Cancelar</a>
             </div>
         </form>
-        <a href="../index.php" class="volver-link">Volver</a>
     </div>
 
 </body>

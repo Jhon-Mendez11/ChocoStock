@@ -29,7 +29,11 @@
                 <input type="number" name="cantidad_min" value="<?= $producto['cantidad_min'] ?>" required>
             </label><br>
 
-            <button type="submit">Guardar cambios</button>
+            <div class="form-buttons">
+                <button type="submit">Guardar cambios</button>
+                <a href="../index.php" class="cancel-btn">Cancelar</a>
+            </div>
+
         </form>
     </div>
 </body>
