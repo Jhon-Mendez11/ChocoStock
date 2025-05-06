@@ -1,3 +1,11 @@
+<?php
+require '../server/commons/db.php'; // tu archivo de conexión
+
+$query = "SELECT p_id, nombre FROM productos";
+$stmt = $db->query($query);
+$productos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,11 +34,7 @@
             </div>
             <div class="form-group">
                 <label>Precio (S/):</label>
-                <input type="number" step="0.01" name="precio" min="0" required>
-            </div>
-            <div class="form-group">
-                <label>Cantidad mínima:</label>
-                <input type="number" name="cantidad_min" min="0" required>
+                <input type="number" step="0.01" name="precio_venta" min="0" required>
             </div>
 
             <div class="form-buttons">
