@@ -46,6 +46,7 @@
                 <td><?= date("d/m/Y H:i", strtotime($p['fecha'])) ?></td>
                 <td>
                   <?= $p['editar'] = '<a href= /ChocoStock/pages/edit_p.php?id=' . $p['p_id'] . ' class="btn-editar">Editar</a>' ?>;
+                  <?= $p['eliminar'] = '<a href= /ChocoStock/product/delete_product.php?id=' . $p['p_id'] . ' class="btn-eliminar">Eliminar</a>' ?>;
                 </td>
               </tr>
             <?php endforeach; ?>
@@ -57,6 +58,9 @@
         </tbody>
       </table>
       <br>
+      <form action="pages/products.php" method="get">
+          <button type="submit" class="delete-btn btn">Registrar nuevo producto</button>
+        </form>
     </div>
 
   </main>

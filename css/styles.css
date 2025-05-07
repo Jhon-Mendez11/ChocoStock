@@ -176,7 +176,22 @@ h1 {
     display: inline-block;
     transition: background-color 0.3s ease;
 }
+.btn-eliminar {
+    background-color: #f80202;
+    /* Verde */
+    color: white;
+    padding: 6px 12px;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 14px;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+}
 
 .btn-editar:hover {
     background-color: #45a049;
+}
+.btn{
+    display:block;
+    margin: auto;
 }
