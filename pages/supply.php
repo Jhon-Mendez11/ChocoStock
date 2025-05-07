@@ -1,0 +1,48 @@
+<?php
+require '../server/commons/db.php'; // tu archivo de conexión
+
+$query = "SELECT p_id, nombre FROM productos";
+$stmt = $db->query($query);
+$productos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de venta</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+
+<body>
+    <div class="p_contenedor">
+        <form action="../server/products/supply.php" method="post">
+            <div class="form-group">
+                <label>Nombre del producto:</label>
+                <select name="id_producto" id="id_producto" required>
+                    <option value="">Seleccione un producto</option>
+                    <?php foreach ($productos as $p): ?>
+                        <option value="<?= $p['p_id'] ?>"><?= htmlspecialchars($p['nombre']) ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Cantidad:</label>
+                <input type="number" name="cantidad" min="0" required>
+            </div>
+            <div class="form-group">
+                <label>Precio (S/):</label>
+                <input type="number" step="0.01" name="precio_venta" min="0" required>
+            </div>
+
+            <div class="form-buttons">
+                <button type="submit">Guardar</button>
+                <a href="../index.php" class="cancel-btn">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>

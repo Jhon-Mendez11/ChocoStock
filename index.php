@@ -16,7 +16,7 @@
     <nav class="menu">
       <ul>
         <li><a href="pages/sales.php">Registrar venta</a></li>
-        <li><a href="pages/products.php">Agregar producto</a></li>
+        <li><a href="pages/supply.php">Agregar producto</a></li>
         <li><a href="#">Reportes</a></li>
         <form action="server/user/logout.php" method="get">
           <button type="submit" class="delete-btn left-align">Cerrar sesión</button>

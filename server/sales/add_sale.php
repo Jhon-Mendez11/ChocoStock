@@ -17,6 +17,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ':cantidad' => $cantidad,
             ':precio_venta' => $precio_venta
         ]);
+
+        $update = "UPDATE productos SET cantidad = cantidad - :cantidad WHERE p_id = :p_id";
+        $stmt = $db->prepare($update);
+        $stmt->execute([
+            ':cantidad' => $cantidad,
+            ':p_id' => $p_id
+        ]);
     }
 
     header('Location: /ChocoStock/index.php');
