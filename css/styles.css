@@ -42,7 +42,7 @@ body {
 }
 
 .logout-link {
-    background-color: #f80202;
+    background-color: #78963e;
     color: white !important;
     padding: 6px 12px;
     text-decoration: none;
@@ -176,20 +176,7 @@ h1 {
 }
 
 .btn-editar {
-    background-color: #4CAF50;
-    /* Verde */
-    color: white;
-    padding: 6px 12px;
-    text-decoration: none;
-    border-radius: 4px;
-    font-size: 14px;
-    display: inline-block;
-    transition: background-color 0.3s ease;
-}
-
-.btn-eliminar {
-    background-color: #f80202;
-    /* Verde */
+    background-color: #393ebb;
     color: white;
     padding: 6px 12px;
     text-decoration: none;
@@ -200,7 +187,18 @@ h1 {
 }
 
 .btn-editar:hover {
-    background-color: #45a049;
+    background-color: #393ebb;
+}
+
+.btn-eliminar {
+    background-color: #7d4b4b;
+    color: white;
+    padding: 6px 12px;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 14px;
+    display: inline-block;
+    transition: background-color 0.3s ease;
 }
 
 .btn {
