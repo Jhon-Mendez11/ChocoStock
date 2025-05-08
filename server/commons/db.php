@@ -2,7 +2,7 @@
 $host = 'localhost';
 $port = '5432';
 $user = 'postgres';
-$pass = '2000';
+$pass = '123456789';
 $db_name = 'chocostock';
 
 try {

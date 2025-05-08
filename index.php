@@ -17,7 +17,7 @@
       <ul>
         <li><a href="pages/sales.php">Registrar venta</a></li>
         <li><a href="pages/supply.php">Agregar producto</a></li>
-        <li><a href="#">Reportes</a></li>
+        <li><a href="pages/report.php">Reportes</a></li>
         <li><a href="server/user/logout.php" method="get" class="logout-link left-align">cerrar sesión</a></li>
       </ul>
     </nav>
