@@ -39,7 +39,6 @@ function renderProducts() {
                                     '<td>' + pro.cantidad + '</td>' +
                                     '<td>' + pro.precio + '</td>' +
                                     '<td>' + pro.fecha + '</td>' +
-                                    '<td>' + pro.editar + '</td>' +
                                     '<td><a class="btn-eliminar" onclick="DeleteProduct(' + pro.p_id + ')">Eliminar</a></td>';
                                 ListPro.appendChild(row);
                             })
