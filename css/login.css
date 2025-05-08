@@ -6,7 +6,16 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
-    color: #3e2f1c
+    padding: 0;
+    color: #3e2f1c;
+    min-height: 100vh;
+}
+
+.contenedor {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .login-container {
@@ -14,15 +23,80 @@ body {
     padding: 2rem;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 300px;
+    width: 100%;
+    max-width: 400px;
+    box-sizing: border-box;
+    text-align: center;
 }
 
-h1, h2{
+.login-container2 {
+    background: #eadfc2;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 400px;
+    box-sizing: border-box;
+}
+
+.titulo-login {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 1rem;
+}
+
+.titulo-login img {
+    width: 40px;
+    height: 40px;
+}
+
+input {
+    width: 90%;
+    padding: 10px;
+    margin-top: 10px;
+    border: 2px solid #bed492;
+    border-radius: 5px;
+    background-color: #d4ccb3;
+}
+
+button[type="submit"] {
+    width: 50%;
+    padding: 10px;
+    margin-top: 15px;
+    background-color: #7da334;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-reg {
+    display: inline-block;
+    margin-top: 15px;
+    font-size: 0.9rem;
+    color: purple;
+    text-decoration: underline;
+    text-align-last: center;
+}
+
+.error {
+    color: red;
+    margin-top: 10px;
+    text-size-adjust: 3;
+}
+
+h1,
+h2 {
     text-align: center;
     margin-bottom: 1rem;
     font-family: cursive;
 }
-p{
+
+p {
     text-align: center;
     margin-bottom: 1rem;
 }
@@ -34,30 +108,8 @@ label {
     font-size: 14px;
 }
 
-input {
-    padding: 0.5rem;
-    margin-top: 0.3rem;
-    border: 2px solid #bed492;
-    border-radius: 6px;
-    background-color: #eadfc2;
-}
-.btn-reg{
-    text-align-last: center;
-}
-button {
-    width: 35%;
-    padding: 0.7rem;
-    background-color: #789936;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-.btn{
-    display:block;
+.btn {
+    display: block;
     margin: auto;
-}
-.error{
-    text-size-adjust: 3;
+    width: 50%;
 }

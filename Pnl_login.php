@@ -2,6 +2,7 @@
 
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ChocoStock web</title>
   <link rel="stylesheet" href="css/login.css" />
 </head>
@@ -10,7 +11,11 @@
   <div class="contenedor">
     <form action="server/user/login.php" method="POST">
       <div class="login-container">
-        <h1>Choco Stock</h1>
+        <div class="titulo-login">
+          <h1>Choco Stock</h1>
+          <img src="img/CS.png" alt="Logo Choco Stock">
+        </div>
+
         <p>Ingresa tu clave para acceder</p>
         <input type="password" name="clave" placeholder="Clave" required />
         <button type="submit">Ingresar</button>

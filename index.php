@@ -18,9 +18,7 @@
         <li><a href="pages/sales.php">Registrar venta</a></li>
         <li><a href="pages/supply.php">Agregar producto</a></li>
         <li><a href="#">Reportes</a></li>
-        <form action="server/user/logout.php" method="get">
-          <button type="submit" class="delete-btn left-align">Cerrar sesión</button>
-        </form>
+        <li><a href="server/user/logout.php" method="get" class="logout-link left-align">cerrar sesión</a></li>
       </ul>
     </nav>
     <div>
@@ -59,8 +57,8 @@
       </table>
       <br>
       <form action="pages/products.php" method="get">
-          <button type="submit" class="delete-btn btn">Registrar nuevo producto</button>
-        </form>
+        <button type="submit" class="delete-btn btn">Registrar nuevo producto</button>
+      </form>
     </div>
 
   </main>
