@@ -205,3 +205,61 @@ h1 {
     display: block;
     margin: auto;
 }
+
+
+/* Botón común para acciones PDF */
+.btn-pdf {
+    display: inline-block;
+    background-color: #5a2a7c; /* tono profesional morado */
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin: 0 10px;
+    box-shadow: 0 4px 6px rgba(90, 42, 124, 0.2);
+}
+
+.btn-pdf:hover {
+    background-color: #4a2368;
+    transform: translateY(-2px);
+}
+
+/* Estilo del botón "Ver PDF" */
+#verPdfBtn {
+    background-color: #397396;
+}
+
+#verPdfBtn:hover {
+    background-color: #2e5d78;
+}
+
+/* Estilo del botón "Descargar PDF" */
+#descargarPdfBtn {
+    background-color: #3e7d3e;
+}
+
+#descargarPdfBtn:hover {
+    background-color: #336733;
+}
+
+/* Botón volver, coherente con tu clase volver-link */
+.btn-volver {
+    display: inline-block;
+    background-color: #b29e7a;
+    color: white;
+    padding: 10px 25px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: bold;
+    text-decoration: none;
+    margin-top: 20px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-volver:hover {
+    background-color: #9c8a6b;
+    transform: scale(1.05);
+}
