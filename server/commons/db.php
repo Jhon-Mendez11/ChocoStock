@@ -2,8 +2,8 @@
 $host = 'localhost';
 $port = '5432';
 $user = 'postgres';
-$pass = '1021';
-$db_name = 'Chocostock';
+$pass = '123456789';
+$db_name = 'chocostock';
 
 try {
     $db = new PDO(

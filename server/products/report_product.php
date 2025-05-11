@@ -2,23 +2,38 @@
 require('../../libs/fpdf.php');
 require '../commons/db.php';
 
+session_start();
 header('Content-Type: application/json');
+
+if (!isset($_SESSION['u_id'])) {
+    echo json_encode(['error' => 'No hay sesión activa']);
+    exit;
+}
+
+$u_id = $_SESSION['u_id'];
 
 // Orden
 $order = $_GET['order'] ?? 'desc';
 $allowedOrders = ['asc', 'desc'];
 $order = in_array(strtolower($order), $allowedOrders) ? $order : 'desc';
 
-// Consulta
-$query = "SELECT id_ventas, cantidad, precio_venta, fecha FROM ventas ORDER BY fecha $order";
-$stmt = $db->query($query);
+// Consulta (asumiendo que el campo correcto es id_usuario)
+
+$query = "SELECT id_ventas, cantidad, precio_venta, fecha FROM ventas WHERE u_id = :u_id ORDER BY fecha $order";
+
+
+
+$stmt = $db->prepare($query);
+$stmt->execute(['u_id' => $u_id]);
 $ventas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 // Si se requiere PDF
 if (isset($_GET['view_pdf']) || isset($_GET['download_pdf'])) {
     generarPDF($ventas, isset($_GET['download_pdf']) ? 'D' : 'I');
+    exit;
 }
 
+// Si es solo JSON
 echo json_encode($ventas);
 exit();
 
@@ -49,5 +64,4 @@ function generarPDF($ventas, $modo = 'I') {
     }
 
     $pdf->Output($modo, 'reporte_ventas.pdf');
-    exit();
 }
