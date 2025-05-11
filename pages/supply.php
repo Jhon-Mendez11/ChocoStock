@@ -1,8 +1,11 @@
 <?php
 require '../server/commons/db.php'; // tu archivo de conexión
+session_start();
+$u_id = $_SESSION['u_id']; 
 
-$query = "SELECT p_id, nombre FROM productos";
-$stmt = $db->query($query);
+$query = "SELECT p_id, nombre FROM productos WHERE u_id = :u_id";
+$stmt = $db->prepare($query);
+$stmt->execute([':u_id' => $u_id]);
 $productos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 

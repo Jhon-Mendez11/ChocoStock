@@ -1,8 +1,11 @@
 <?php
+session_start();
 require '../server/commons/db.php'; // tu archivo de conexión
+$u_id = $_SESSION['u_id'];
 
-$query = "SELECT p_id, nombre FROM productos";
-$stmt = $db->query($query);
+$query = "SELECT p_id, nombre FROM productos where u_id = :u_id";
+$stmt = $db->prepare($query);
+$stmt->execute([':u_id' => $u_id]);
 $productos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
@@ -18,6 +21,7 @@ $productos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <body>
     <div class="p_contenedor">
+        <h2>Registrar venta</h2>
         <form action="../server/sales/add_sale.php" method="post">
             <div class="form-group">
                 <label>Nombre:</label>
