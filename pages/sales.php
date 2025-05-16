@@ -17,14 +17,15 @@ $productos = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro de venta</title>
     <link rel="stylesheet" href="../css/styles.css">
+    <script src="../js/app.js" defer></script>
 </head>
 
 <body>
     <div class="p_contenedor">
         <h2>Registrar venta</h2>
-        <form action="../server/sales/add_sale.php" method="post">
+        <form id="ventaForm" action="../server/sales/add_sale.php" method="post">
             <div class="form-group">
-                <label>Nombre:</label>
+                <label>Nombre del producto:</label>
                 <select name="id_producto" id="id_producto" required>
                     <option value="">Seleccione un producto</option>
                     <?php foreach ($productos as $p): ?>
@@ -32,15 +33,17 @@ $productos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <?php endforeach; ?>
                 </select>
             </div>
+            <br>
             <div class="form-group">
-                <label>Cantidad:</label>
+                <label>Cantidad a vender:</label>
                 <input type="number" name="cantidad" min="0" required>
             </div>
+            <br>
             <div class="form-group">
-                <label>Precio (S/):</label>
+                <label>Precio de venta:</label>
                 <input type="number" step="0.01" name="precio_venta" min="0" required>
             </div>
-
+            <br>
             <div class="form-buttons">
                 <button type="submit">Guardar</button>
                 <a href="../index.php" class="cancel-btn">Cancelar</a>

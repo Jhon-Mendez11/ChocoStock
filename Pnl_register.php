@@ -10,7 +10,7 @@
 
 <body>
     <div class="login-container2">
-        <h2>Registrar nueva usuario </h2>
+        <h2>Crear nueva cuenta</h2>
         <form action="server/user/register.php" method="POST" autocomplete="off">
             <br>
             <label>

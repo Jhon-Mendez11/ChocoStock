@@ -19,12 +19,19 @@ $order = in_array(strtolower($order), $allowedOrders) ? $order : 'desc';
 
 // Consulta (asumiendo que el campo correcto es id_usuario)
 
-$query = "SELECT id_ventas, cantidad, precio_venta, fecha FROM ventas WHERE u_id = :u_id ORDER BY fecha $order";
+$limit = isset($_GET['limit']) ? intval($_GET['limit']) : 8;
+$limit = ($limit > 0 && $limit <= 100) ? $limit : 8; 
 
-
+$query = "SELECT m_id, producto_id, nombre, tipo_mov, movimientos.cantidad, movimientos.fecha, movimientos.precio
+FROM movimientos 
+join productos on producto_id = p_id WHERE movimientos.u_id = :u_id 
+ORDER BY movimientos.fecha $order LIMIT :limit";
 
 $stmt = $db->prepare($query);
-$stmt->execute(['u_id' => $u_id]);
+$stmt->bindValue(':u_id', $u_id, PDO::PARAM_INT);
+$stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+$stmt->execute();
+
 $ventas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 // Si se requiere PDF
@@ -38,7 +45,8 @@ echo json_encode($ventas);
 exit();
 
 // Función PDF
-function generarPDF($ventas, $modo = 'I') {
+function generarPDF($ventas, $modo = 'I')
+{
     $pdf = new FPDF();
     $pdf->AddPage();
 

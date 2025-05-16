@@ -8,12 +8,30 @@ window.DeleteProduct = function (p_id) {
     })
         .then(res => res.json())
         .then(data => {
-            alert(data.message || "Producto eliminado.");
-            // Aquí puedes recargar la tabla si deseas:
+            const mensajeDiv = document.getElementById('eliminacionMensaje');
+            if (data.success) {
+                mensajeDiv.innerText = '✅ Producto eliminado correctamente.';
+                mensajeDiv.className = 'mensaje mensaje-exito';
+                mensajeDiv.style.display = 'block';
+            } else {
+                mensajeDiv.innerText = '❌ Error al eliminar: ' + (data.error || 'Error desconocido');
+                mensajeDiv.className = 'mensaje mensaje-error';
+                mensajeDiv.style.display = 'block';
+            }
+            setTimeout(() => {
+                mensajeDiv.style.display = 'none';
+            }, 4000);
             renderProducts(); // si tienes esta función definida
         })
         .catch(err => {
-            console.error("Error eliminando producto:", err);
+            const mensajeDiv = document.getElementById('eliminacionMensaje');
+            mensajeDiv.innerText = '❌ Error en la petición: ' + err;
+            mensajeDiv.className = 'mensaje mensaje-error';
+            mensajeDiv.style.display = 'block';
+        
+            setTimeout(() => {
+              mensajeDiv.style.display = 'none';
+            }, 4000);
         });
 }
 
@@ -33,14 +51,30 @@ function renderProducts() {
                             pro => {
                                 console.log(pro)
 
+                                $error_men = "";
+
                                 const row = document.createElement('tr');
+                                if (pro.cantidad <= 10) {
+                                    row.style.backgroundColor = '#ffd6d6';
+                                    $error_men = '¡Alerta!';
+                                }
+                                var fechaCompleta = pro.fecha;
+                                var partes = fechaCompleta.split(' ');
+                                var fechaSolo = partes[0];
+                                var horaMinutos = partes[1].split(':');
+                                var horaMinutosSolo = horaMinutos[0] + ':' + horaMinutos[1];
+                                var fechaHora = fechaSolo + ' ' + horaMinutosSolo;
+                                var can = parseInt(pro.cantidad);
+                                var cantidad = can + ' ' + 'Kg'
+
                                 row.innerHTML =
                                     '<td>' + pro.nombre + '</td>' +
-                                    '<td>' + pro.cantidad + '</td>' +
+                                    '<td>' + cantidad + '</td>' +
                                     '<td>' + pro.precio + '</td>' +
-                                    '<td>' + pro.fecha + '</td>' +
+                                    '<td>' + fechaHora + '</td>' +
                                     '<td><a class="btn-eliminar" onclick="DeleteProduct(' + pro.p_id + ')">Eliminar</a></td>';
                                 ListPro.appendChild(row);
+                                '<p>' + $error_men + '</p>'
                             })
                     })
                     .catch(err => {
@@ -59,4 +93,38 @@ function renderProducts() {
 document.addEventListener('DOMContentLoaded', () => {
 
     renderProducts();
+    const form = document.getElementById('ventaForm');
+    const message = document.getElementById('ventaMessage');
+
+    if (form) {
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const formData = new FormData(form);
+
+            try {
+                const res = await fetch('server/products/add_sale.php', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const data = await res.json();
+
+                message.textContent = data.message;
+
+                if (data.success) {
+                    message.style.color = 'green';
+                    form.reset();
+                    renderProducts(); // si quieres actualizar productos tras venta
+                } else {
+                    message.style.color = 'red';
+                }
+
+            } catch (err) {
+                message.textContent = 'Error en la solicitud';
+                message.style.color = 'red';
+            }
+        });
+    }
+
 });

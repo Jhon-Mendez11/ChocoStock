@@ -1,7 +1,7 @@
 <?php
 require '../server/commons/db.php'; // tu archivo de conexión
 session_start();
-$u_id = $_SESSION['u_id']; 
+$u_id = $_SESSION['u_id'];
 
 $query = "SELECT p_id, nombre FROM productos WHERE u_id = :u_id";
 $stmt = $db->prepare($query);
@@ -21,6 +21,7 @@ $productos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <body>
     <div class="p_contenedor">
+        <h2>Registrar Entrada</h2>
         <form action="../server/products/supply.php" method="post">
             <div class="form-group">
                 <label>Nombre del producto:</label>
@@ -31,15 +32,17 @@ $productos = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <?php endforeach; ?>
                 </select>
             </div>
+            <br>
             <div class="form-group">
-                <label>Cantidad:</label>
+                <label>Cantidad a comprar:</label>
                 <input type="number" name="cantidad" min="0" required>
             </div>
+            <br>
             <div class="form-group">
-                <label>Precio (S/):</label>
+                <label>Precio de compra:</label>
                 <input type="number" step="0.01" name="precio_venta" min="0" required>
             </div>
-
+            <br>
             <div class="form-buttons">
                 <button type="submit">Guardar</button>
                 <a href="../index.php" class="cancel-btn">Cancelar</a>

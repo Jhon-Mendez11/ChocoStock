@@ -1,3 +1,6 @@
+<?php
+
+?>
 <html lang="es">
 
 <head>
@@ -23,9 +26,27 @@
         <label>
           <a href="Pnl_register.php" class="btn-reg">registrar clave</a>
         </label>
-        <?php if (isset($_GET['error'])): ?>
-          <p class="error">Credenciales incorrectas</p>
+
+        <?php if (isset($_GET['registro']) && $_GET['registro'] === 'exitoso'): ?>
+          <div id="registroMensaje" class="mensaje mensaje-exito">
+            ✅ Registro exitoso. Puedes iniciar sesión.
+          </div>
         <?php endif; ?>
+
+        <?php if (isset($_GET['error']) && $_GET['error'] === 'credenciales'): ?>
+          <div id="loginMensaje" class="mensaje mensaje-error">
+            Usuario o contraseña incorrectos.
+          </div>
+        <?php endif; ?>
+
+        <script>
+          setTimeout(() => {
+            const loginMsg = document.getElementById('loginMensaje');
+            const regMsg = document.getElementById('registroMensaje');
+            if (loginMsg) loginMsg.style.display = 'none';
+            if (regMsg) regMsg.style.display = 'none';
+          }, 4000);
+        </script>
       </div>
     </form>
   </div>

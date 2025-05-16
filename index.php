@@ -15,9 +15,14 @@
   <main>
     <nav class="menu">
       <ul>
-        <li><a href="pages/sales.php">Registrar venta</a></li>
-        <li><a href="pages/supply.php">Agregar producto</a></li>
-        <li><a href="pages/report.php">Reportes</a></li>
+        <li><a href="pages/sales.php">Salida</a></li>
+        <li><a href="pages/supply.php">Entrada</a></li>
+        <li class="submenu"><a href="#">Reportes</a>
+          <ul class="dropdown">
+            <li><a href="pages/report_mov">Movimientos</a></li>
+            <li><a href="pages/report.php">Reporte de Ventas</a></li>
+          </ul>
+        </li>
         <li><a href="server/user/logout.php" method="get" class="logout-link left-align">cerrar sesión</a></li>
       </ul>
     </nav>
@@ -57,6 +62,35 @@
       <br>
       <form action="pages/products.php" method="get">
         <button type="submit" class="delete-btn btn">Registrar nuevo producto</button>
+        <br>
+        <div id="eliminacionMensaje" class="mensaje mensaje-exito" style="display: none;"></div>
+        <?php if (isset($_GET['registro']) && $_GET['registro'] === 'exitoso'): ?>
+          <div id="registroProduct" class="mensaje mensaje-exito">
+            ✅ Registro de nuevo producto exitoso.
+          </div>
+        <?php endif; ?>
+
+        <?php if (isset($_GET['supply']) && $_GET['supply'] === 'exitoso'): ?>
+          <div id="registroSupply" class="mensaje mensaje-exito">
+            ✅ Se agrego producto al Inventario.
+          </div>
+        <?php endif; ?>
+        <?php if (isset($_GET['sale']) && $_GET['sale'] === 'exitoso'): ?>
+          <div id="registroSale" class="mensaje mensaje-exito">
+            ✅ Venta Exitosa.
+          </div>
+        <?php endif; ?>
+        <script>
+          setTimeout(() => {
+            const regSal = document.getElementById('registroSale');
+            const regSup = document.getElementById('registroSupply');
+            const regMsg = document.getElementById('registroProduct');
+            if (regSal) regSal.style.display = 'none';
+            if (regSup) regSup.style.display = 'none';
+            if (regMsg) regMsg.style.display = 'none';
+          }, 4000);
+        </script>
+
       </form>
     </div>
 

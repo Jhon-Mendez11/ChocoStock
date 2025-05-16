@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ':u_id' => $u_id
     ]);
 
-    header('Location: /ChocoStock/index.php');
+    header('Location: /ChocoStock/index.php?registro=exitoso');
     exit;
 }
 ?>

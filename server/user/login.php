@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         header('Location: /ChocoStock/index.php');
         exit;
     } else {
-        header('Location: Pnl_login.php?error=1');
+        header('Location: Pnl_login.php?error=credenciales');
         exit;
     }
 }

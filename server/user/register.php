@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             exit();
         }
 
-        header("Location: /ChocoStock/Pnl_login.php");
+        header("Location: /ChocoStock/Pnl_login.php?registro=exitoso");
     } catch (PDOException $e) {
         echo "Error en el registro: " . $e->getMessage();
         exit();
