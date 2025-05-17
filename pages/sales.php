@@ -35,7 +35,7 @@ $productos = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </div>
             <br>
             <div class="form-group">
-                <label>Cantidad a vender:</label>
+                <label>Cantidad a vender en kg:</label>
                 <input type="number" name="cantidad" min="0" required>
             </div>
             <br>

@@ -34,8 +34,8 @@
           <tr>
             <th>Tipo de producto</th>
             <th>Cantidad</th>
-            <th>precio</th>
-            <th>fecha</th>
+            <th>Precio</th>
+            <th>Fecha y hora</th>
             <th>Acciones</th>
           </tr>
         </thead>

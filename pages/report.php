@@ -35,10 +35,6 @@
                 <!-- Aquí se insertarán los datos vía JS -->
             </tbody>
         </table>
-        <div id="botones-ver">
-            <button id="verMasBtn">Ver más</button>
-            <button id="verMenosBtn" style="display: none;">Ver menos</button>
-        </div>
         <div style="margin-top: 20px; text-align: center;">
             <a class="btn-pdf" id="verPdfBtn" href="#" target="_blank">Ver PDF</a>
             <a class="btn-pdf" id="descargarPdfBtn" href="#">Descargar PDF</a>
