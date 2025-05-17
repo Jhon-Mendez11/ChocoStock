@@ -17,15 +17,15 @@ $order = $_GET['order'] ?? 'desc';
 $allowedOrders = ['asc', 'desc'];
 $order = in_array(strtolower($order), $allowedOrders) ? $order : 'desc';
 
-// Consulta (asumiendo que el campo correcto es id_usuario)
-
 $limit = isset($_GET['limit']) ? intval($_GET['limit']) : 8;
 $limit = ($limit > 0 && $limit <= 100) ? $limit : 8; 
 
 $query = "SELECT m_id, producto_id, nombre, tipo_mov, movimientos.cantidad, movimientos.fecha, movimientos.precio
 FROM movimientos 
-join productos on producto_id = p_id WHERE movimientos.u_id = :u_id 
-ORDER BY movimientos.fecha $order LIMIT :limit";
+JOIN productos ON producto_id = p_id 
+WHERE movimientos.u_id = :u_id 
+ORDER BY movimientos.fecha $order 
+LIMIT :limit";
 
 $stmt = $db->prepare($query);
 $stmt->bindValue(':u_id', $u_id, PDO::PARAM_INT);
@@ -51,7 +51,7 @@ function generarPDF($ventas, $modo = 'I')
     $pdf->AddPage();
 
     $pdf->SetFont('Arial', 'B', 12);
-    $pdf->Cell(0, 10, 'ChocoStock - Reporte de Ventas', 0, 1, 'C');
+    $pdf->Cell(0, 10, 'ChocoStock - Reporte de Movimientos', 0, 1, 'C');
     $pdf->Ln(10);
 
     $pdf->SetFont('Arial', '', 10);
@@ -60,16 +60,20 @@ function generarPDF($ventas, $modo = 'I')
     $pdf->Ln(10);
 
     $pdf->Cell(30, 10, 'Cantidad', 1);
-    $pdf->Cell(40, 10, 'Precio (S/)', 1);
+    $pdf->Cell(40, 10, 'Movimiento', 1);
+    $pdf->Cell(50, 10, 'Producto', 1);
+    $pdf->Cell(30, 10, 'Valor (S/)', 1);
     $pdf->Cell(40, 10, 'Fecha', 1);
     $pdf->Ln();
 
     foreach ($ventas as $v) {
-        $pdf->Cell(30, 10, $v['cantidad'], 1);
-        $pdf->Cell(40, 10, number_format($v['precio_venta'], 2), 1);
+        $pdf->Cell(30, 10, number_format($v['cantidad'], 0), 1); // 0 decimales
+        $pdf->Cell(40, 10, ucfirst($v['tipo_mov']), 1);
+        $pdf->Cell(50, 10, $v['nombre'], 1);
+        $pdf->Cell(30, 10, number_format($v['precio'], 2), 1);
         $pdf->Cell(40, 10, date('d/m/Y', strtotime($v['fecha'])), 1);
         $pdf->Ln();
     }
 
-    $pdf->Output($modo, 'reporte_ventas.pdf');
+    $pdf->Output($modo, 'reporte_movimientos.pdf');
 }
