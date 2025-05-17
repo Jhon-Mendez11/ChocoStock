@@ -17,16 +17,12 @@
                 <input type="text" name="nombre" required>
             </div>
             <div class="form-group">
-                <label>Cantidad:</label>
+                <label>Cantidad en Kg:</label>
                 <input type="number" name="cantidad" min="0" required>
             </div>
             <div class="form-group">
-                <label>Precio (S/):</label>
+                <label>Precio inicial:</label>
                 <input type="number" step="0.01" name="precio" min="0" required>
-            </div>
-            <div class="form-group">
-                <label>Cantidad mínima:</label>
-                <input type="number" name="cantidad_min" min="0" required>
             </div>
 
             <div class="form-buttons">
