@@ -9,20 +9,18 @@ $id = (int) $_GET['id'];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nombre = trim($_POST['nombre']);
-    $cantidad = (int) $_POST['cantidad'];
+
     $precio = intval($_POST['precio']);
-    $cantidad_min = (int) $_POST['cantidad_min'];
+
 
     $query = "UPDATE productos 
-              SET nombre = :nombre, cantidad = :cantidad, precio = :precio, cantidad_min = :cantidad_min 
+              SET nombre = :nombre, precio = :precio
               WHERE p_id = :id";
 
     $stmt = $db->prepare($query);
     $stmt->execute([
         ':nombre' => $nombre,
-        ':cantidad' => $cantidad,
         ':precio' => $precio,
-        ':cantidad_min' => $cantidad_min,
         ':id' => $id
     ]);
 

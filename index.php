@@ -48,7 +48,7 @@
                 <td><?= $p['precio'] ?></td>
                 <td><?= date("d/m/Y H:i", strtotime($p['fecha'])) ?></td>
                 <td>
-                  <?= $p['eliminar'] = '<a href= /ChocoStock/product/delete_product.php?id=' . $p['p_id'] . ' class="btn-eliminar">Eliminar</a>' ?>;
+                  <a href="/ChocoStock/pages/edit_p.php?id=<?= $p['p_id'] ?>" class="btn-editar">Editar</a>
                 </td>
               </tr>
             <?php endforeach; ?>

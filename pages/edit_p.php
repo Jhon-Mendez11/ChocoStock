@@ -11,30 +11,24 @@
 </head>
 
 <body>
-    <div class="p_contenedor">
+    <div class="form-container">
         <h1>Editar producto</h1>
         <form method="POST">
-            <label>Nombre:
-                <input type="text" name="nombre" value="<?= htmlspecialchars($producto['nombre']) ?>" required>
-            </label><br>
+            <div class="form-group">
+                <label for="nombre">Nombre:</label>
+                <input type="text" name="nombre" id="nombre" value="<?= htmlspecialchars($producto['nombre']) ?>"
+                    required>
+            </div>
 
-            <label>Cantidad:
-                <input type="number" name="cantidad" value="<?= $producto['cantidad'] ?>" required>
-            </label><br>
-
-            <label>Precio:
-                <input type="number" step="1" name="precio" value="<?= $producto['precio'] ?>" required>
-            </label><br>
-
-            <label>Cantidad mínima:
-                <input type="number" name="cantidad_min" value="<?= $producto['cantidad_min'] ?>" required>
-            </label><br>
+            <div class="form-group">
+                <label for="precio">Precio:</label>
+                <input type="number" step="1" name="precio" id="precio" value="<?= $producto['precio'] ?>" required>
+            </div>
 
             <div class="form-buttons">
                 <button type="submit">Guardar cambios</button>
                 <a href="../index.php" class="cancel-btn">Cancelar</a>
             </div>
-
         </form>
     </div>
 </body>

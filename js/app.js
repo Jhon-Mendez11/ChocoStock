@@ -28,9 +28,9 @@ window.DeleteProduct = function (p_id) {
             mensajeDiv.innerText = '❌ Error en la petición: ' + err;
             mensajeDiv.className = 'mensaje mensaje-error';
             mensajeDiv.style.display = 'block';
-        
+
             setTimeout(() => {
-              mensajeDiv.style.display = 'none';
+                mensajeDiv.style.display = 'none';
             }, 4000);
         });
 }
@@ -72,7 +72,7 @@ function renderProducts() {
                                     '<td>' + cantidad + '</td>' +
                                     '<td>' + pro.precio + '</td>' +
                                     '<td>' + fechaHora + '</td>' +
-                                    '<td><a class="btn-eliminar" onclick="DeleteProduct(' + pro.p_id + ')">Eliminar</a></td>';
+                                    '<td><a class="btn-editar" ' + pro.editar + '</a></td>';
                                 ListPro.appendChild(row);
                                 '<p>' + $error_men + '</p>'
                             })

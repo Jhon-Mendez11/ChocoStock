@@ -1,5 +1,5 @@
 <?php
-require '../server/commons/db.php'; // tu archivo de conexión
+require '../server/commons/db.php';
 session_start();
 $u_id = $_SESSION['u_id'];
 
@@ -40,7 +40,7 @@ $productos = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <br>
             <div class="form-group">
                 <label>Precio de compra:</label>
-                <input type="number" step="0.01" name="precio_venta" min="0" required>
+                <input type="number" step="0.1" name="precio_venta" min="0" required>
             </div>
             <br>
             <div class="form-buttons">
