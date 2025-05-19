@@ -10,7 +10,7 @@ if (!isset($_GET['u_id'])) {
 $u_id = $_GET['u_id'];
 
 try {
-    $stmt = $db->prepare("SELECT * FROM productos WHERE u_id = :u_id ORDER BY fecha DESC");
+    $stmt = $db->prepare("SELECT * FROM productos WHERE u_id = :u_id AND activo = TRUE ORDER BY fecha DESC");//linea cambiada 
     $stmt->execute([
         'u_id' => $u_id
     ]);

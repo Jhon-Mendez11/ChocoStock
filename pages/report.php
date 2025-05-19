@@ -27,6 +27,7 @@
             <thead>
                 <tr>
                     <th>Cantidad</th>
+                    <th>Producto</th>
                     <th>Precio Venta (S/)</th>
                     <th>Fecha</th>
                 </tr>
@@ -45,4 +46,5 @@
         </div>
     </div>
 </body>
+
 </html>

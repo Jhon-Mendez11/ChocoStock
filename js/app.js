@@ -1,5 +1,5 @@
 window.DeleteProduct = function (p_id) {
-    fetch('server/products/delete_product.php', {
+    fetch('/ChocoStock/server/products/delete.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -13,6 +13,11 @@ window.DeleteProduct = function (p_id) {
                 mensajeDiv.innerText = '✅ Producto eliminado correctamente.';
                 mensajeDiv.className = 'mensaje mensaje-exito';
                 mensajeDiv.style.display = 'block';
+
+                // Ocultar la fila del producto eliminado
+                const fila = document.querySelector('[data-producto-id="' + p_id + '"]');
+                if (fila) fila.remove();
+
             } else {
                 mensajeDiv.innerText = '❌ Error al eliminar: ' + (data.error || 'Error desconocido');
                 mensajeDiv.className = 'mensaje mensaje-error';
@@ -21,7 +26,6 @@ window.DeleteProduct = function (p_id) {
             setTimeout(() => {
                 mensajeDiv.style.display = 'none';
             }, 4000);
-            renderProducts(); // si tienes esta función definida
         })
         .catch(err => {
             const mensajeDiv = document.getElementById('eliminacionMensaje');
@@ -54,6 +58,8 @@ function renderProducts() {
                                 $error_men = "";
 
                                 const row = document.createElement('tr');
+                                row.setAttribute('data-producto-id', pro.p_id); // Para poder eliminar la fila luego
+
                                 if (pro.cantidad <= 10) {
                                     row.style.backgroundColor = '#ffd6d6';
                                     $error_men = '¡Alerta!';
@@ -72,7 +78,11 @@ function renderProducts() {
                                     '<td>' + cantidad + '</td>' +
                                     '<td>' + pro.precio + '</td>' +
                                     '<td>' + fechaHora + '</td>' +
-                                    '<td><a class="btn-editar" ' + pro.editar + '</a></td>';
+                                    '<td>' +
+                                    '<a href="/ChocoStock/pages/edit_p.php?id=' + pro.p_id + '" class="btn-editar">Editar</a>' +
+                                    '<button onclick="if(confirm(\'¿Estás seguro de que deseas eliminar este producto?\')) DeleteProduct(' + pro.p_id + ');" class="btn-eliminar">Eliminar</button>' +
+                                    '</td>';
+
                                 ListPro.appendChild(row);
                                 '<p>' + $error_men + '</p>'
                             })
@@ -90,6 +100,7 @@ function renderProducts() {
             console.error('Error al verificar sesión:', err);
         });
 }
+
 document.addEventListener('DOMContentLoaded', () => {
 
     renderProducts();

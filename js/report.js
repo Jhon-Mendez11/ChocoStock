@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const row = `
                     <tr>
                         <td>${v.cantidad}</td>
+                        <td>${v.nombre}</td>                        
                         <td>${parseFloat(v.precio_venta).toFixed(2)}</td>
                         <td>${new Date(v.fecha).toLocaleDateString('es-PE')}</td>
                     </tr>

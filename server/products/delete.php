@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($data['p_id'])) {
         try {
             $id = $data['p_id'];
-            $stmt = $db->prepare("DELETE FROM productos WHERE p_id = :p_id");
+            $stmt = $db->prepare("UPDATE productos SET activo = false WHERE p_id = :p_id");
             $stmt->execute(['p_id' => $id]);
 
             echo json_encode(["success" => true]);
@@ -21,3 +21,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 } else {
     echo json_encode(["error" => "Invalid request"]);
 }
+?>

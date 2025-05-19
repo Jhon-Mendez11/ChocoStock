@@ -17,14 +17,17 @@ $order = $_GET['order'] ?? 'desc';
 $allowedOrders = ['asc', 'desc'];
 $order = in_array(strtolower($order), $allowedOrders) ? $order : 'desc';
 
-// Consulta (asumiendo que el campo correcto es id_usuario)
-
+// Límite
 $limit = isset($_GET['limit']) ? intval($_GET['limit']) : 8;
-$limit = ($limit > 0 && $limit <= 100) ? $limit : 8; 
+$limit = ($limit > 0 && $limit <= 100) ? $limit : 8;
 
-$query = "SELECT id_ventas, cantidad, precio_venta, fecha 
-FROM ventas WHERE u_id = :u_id 
-ORDER BY fecha $order LIMIT :limit";
+// Consulta modificada para incluir el nombre del producto
+$query = "SELECT v.id_ventas, v.cantidad, v.precio_venta, v.fecha, p.nombre 
+FROM ventas v 
+JOIN productos p ON v.id_producto = p.p_id 
+WHERE v.u_id = :u_id 
+ORDER BY v.fecha $order 
+LIMIT :limit";
 
 $stmt = $db->prepare($query);
 $stmt->bindValue(':u_id', $u_id, PDO::PARAM_INT);
@@ -33,17 +36,17 @@ $stmt->execute();
 
 $ventas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-// Si se requiere PDF
+// Generar PDF si se solicita
 if (isset($_GET['view_pdf']) || isset($_GET['download_pdf'])) {
     generarPDF($ventas, isset($_GET['download_pdf']) ? 'D' : 'I');
     exit;
 }
 
-// Si es solo JSON
+// Devolver JSON
 echo json_encode($ventas);
 exit();
 
-// Función PDF
+// Función para PDF
 function generarPDF($ventas, $modo = 'I')
 {
     $pdf = new FPDF();
@@ -58,13 +61,16 @@ function generarPDF($ventas, $modo = 'I')
     $pdf->Cell(0, 10, 'Empresa: ChocoStock', 0, 1, 'L');
     $pdf->Ln(10);
 
+    // Encabezado de tabla
     $pdf->Cell(30, 10, 'Cantidad', 1);
+    $pdf->Cell(50, 10, 'Producto', 1);
     $pdf->Cell(40, 10, 'Precio (S/)', 1);
     $pdf->Cell(40, 10, 'Fecha', 1);
     $pdf->Ln();
 
     foreach ($ventas as $v) {
         $pdf->Cell(30, 10, $v['cantidad'], 1);
+        $pdf->Cell(50, 10, $v['nombre'], 1);
         $pdf->Cell(40, 10, number_format($v['precio_venta'], 2), 1);
         $pdf->Cell(40, 10, date('d/m/Y', strtotime($v['fecha'])), 1);
         $pdf->Ln();
@@ -72,3 +78,4 @@ function generarPDF($ventas, $modo = 'I')
 
     $pdf->Output($modo, 'reporte_ventas.pdf');
 }
+?>

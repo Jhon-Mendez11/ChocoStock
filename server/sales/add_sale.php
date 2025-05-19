@@ -52,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
         $query = "INSERT INTO ventas (id_producto, cantidad, precio_venta, fecha, u_id)
         VALUES (:p_id, :cantidad, :precio_venta, NOW(), :u_id)";
-    
+
         $stmt = $db->prepare($query);
         $stmt->execute([
             ':p_id' => $p_id,
@@ -60,14 +60,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ':precio_venta' => $precio_venta,
             ':u_id' => $u_id
         ]);
-    
+
         $update = "UPDATE productos SET cantidad = cantidad - :cantidad WHERE p_id = :p_id";
         $stmt = $db->prepare($update);
         $stmt->execute([
             ':cantidad' => $cantidad,
             ':p_id' => $p_id
         ]);
-    
+
         $mov = "INSERT INTO movimientos (tipo_mov, cantidad, producto_id, u_id, precio)
         VALUES ('salida', :cantidad, :p_id, :u_id, :precio_venta)";
         $stmt_mov = $db->prepare($mov);
@@ -75,11 +75,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ':cantidad' => $cantidad,
             ':p_id' => $p_id,
             ':u_id' => $_SESSION['u_id'],
-            ':precio_venta' => $precio
+            ':precio_venta' => $precio_venta
         ]);
-    }
-
-    catch (PDOException $e) {
+    } catch (PDOException $e) {
         echo json_encode([
             'success' => false,
             'message' => 'Error en la base de datos.'

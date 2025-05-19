@@ -48,7 +48,14 @@
                 <td><?= $p['precio'] ?></td>
                 <td><?= date("d/m/Y H:i", strtotime($p['fecha'])) ?></td>
                 <td>
-                  <a href="/ChocoStock/pages/edit_p.php?id=<?= $p['p_id'] ?>" class="btn-editar">Editar</a>
+                  <div class="acciones">
+                    <a href="/ChocoStock/pages/edit_p.php?id=<?= $p['p_id'] ?>" class="btn-editar">Editar</a>
+                    <form action="/ChocoStock/server/products/delete.php" method="post"
+                      onsubmit="return confirm('¿Estás seguro de que deseas eliminar este producto?');">
+                      <input type="hidden" name="id" value="<?= $p['p_id'] ?>">
+                      <button type="submit" class="btn-eliminar">Eliminar</button>
+                    </form>
+                  </div>
                 </td>
               </tr>
             <?php endforeach; ?>
