@@ -19,7 +19,7 @@
         <li><a href="pages/supply.php">Entrada</a></li>
         <li class="submenu"><a href="#">Reportes</a>
           <ul class="dropdown">
-            <li><a href="pages/report_mov">Movimientos</a></li>
+            <li><a href="pages/report_mov.php">Movimientos</a></li>
             <li><a href="pages/report.php">Reporte de Ventas</a></li>
           </ul>
         </li>
