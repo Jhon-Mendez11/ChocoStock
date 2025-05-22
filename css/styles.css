@@ -1,6 +1,6 @@
 body {
     background-color: #f5f3eb;
-    font-family: 'Segoe UI', cursive, sans-serif;
+    font-family: 'Segoe UI', sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -293,6 +293,7 @@ h1 {
 
 .tabla-productos th,
 .tabla-productos td {
+    font-family: 'Arial', sans-serif;
     border: 1px solid #c8bca8;
     padding: 10px;
     text-align: center;

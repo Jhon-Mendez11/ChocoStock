@@ -67,10 +67,10 @@ function generarPDF($ventas, $modo = 'I')
     $pdf->Ln();
 
     foreach ($ventas as $v) {
-        $pdf->Cell(30, 10, number_format($v['cantidad'], 0), 1); // 0 decimales
+        $pdf->Cell(30, 10, $v['cantidad'], 1);
         $pdf->Cell(40, 10, ucfirst($v['tipo_mov']), 1);
         $pdf->Cell(50, 10, $v['nombre'], 1);
-        $pdf->Cell(30, 10, number_format($v['precio'], 2), 1);
+        $pdf->Cell(30, 10, is_null($v['precio']) ? 'N/A' : number_format($v['precio'], 2), 1);
         $pdf->Cell(40, 10, date('d/m/Y', strtotime($v['fecha'])), 1);
         $pdf->Ln();
     }

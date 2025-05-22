@@ -36,6 +36,13 @@
                 <!-- Aquí se insertarán los datos vía JS -->
             </tbody>
         </table>
+
+        <div style="text-align: center; margin-top: 10px;">
+            <button id="prevBtn" class="btn-volver">Anterior</button>
+            <button id="nextBtn" class="btn-volver">Siguiente</button>
+        </div>
+
+
         <div style="margin-top: 20px; text-align: center;">
             <a class="btn-pdf" id="verPdfBtn" href="#" target="_blank">Ver PDF</a>
             <a class="btn-pdf" id="descargarPdfBtn" href="#">Descargar PDF</a>
