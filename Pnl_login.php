@@ -1,11 +1,12 @@
 <?php
-
+// Solo para detectar mensajes de error o éxito
 ?>
+<!DOCTYPE html>
 <html lang="es">
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ChocoStock web</title>
   <link rel="stylesheet" href="css/login.css" />
 </head>
@@ -16,13 +17,14 @@
       <div class="login-container">
         <div class="titulo-login">
           <h1>Choco Stock</h1>
-          <img src="img/CS.png" alt="Logo Choco Stock">
+          <img src="img/CS.png" alt="Logo Choco Stock" />
         </div>
 
-        <p>Ingresa tu clave para acceder</p>
+        <p>Ingresa tu clave y nombre para acceder</p>
+        <input type="text" name="name_u" placeholder="Nombre de usuario" required />
         <input type="password" name="clave" placeholder="Clave" required />
         <button type="submit">Ingresar</button>
-        <br><br>
+        <br /><br />
         <label>
           <a href="Pnl_register.php" class="btn-reg">registrar clave</a>
         </label>
